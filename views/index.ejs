@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Authentication</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</head>
+<body>
+
+          <div class="container">
+               <nav class="navbar">
+                    <div class="navbar-brand">
+                         <div class="navbar-item">
+                              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                         </div>
+                    </div>
+                    <div class="navbar-menu">
+                         <div class="navbar-start">
+                              <a class="navbar-item">
+                                   Home
+                                 </a>
+                                 <a class="navbar-item">
+                                   Documentation
+                                 </a>
+                         </div>
+                         <div class="navbar-end">
+                              <div class="navbar-item">
+                                   <div>
+                                   </div>
+                                   <div class="buttons">
+                                        <% if(user) { %>
+                                             <div class="dropdown is-hoverable">
+                                                  <div class="dropdown-trigger">
+                                                    <button class="button is-primary is-focused is-light  is-rounded" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                      <span> <%= user.username %></span>
+                                                      <span class="icon is-small">
+                                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                                      </span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                                    <div class="dropdown-content">
+                                                      <a href="/auth/profile" class="dropdown-item">
+                                                        Profile
+                                                      </a>
+                                                      <!-- <hr class="dropdown-divider"> -->
+                                                      <a href="/auth/logout" class="dropdown-item has-background-danger-light is-light">
+                                                        Log-out
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                        <% }else {  %>
+                                        <a href="/auth/google" class="button is-danger">Sign-in with Google</a>
+                                        <a href="/auth/gihub" class="button is-dark">Sign-in with Github</a>
+                                        <% } %>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </nav>
+               <% if(user) { %>
+               <figure class="image is-64x64">
+                    <img class="is-rounded" src="<%= user.picture %>">
+                  </figure>
+                  <% } %>
+          </div>
+     
+</body>
+</html>
